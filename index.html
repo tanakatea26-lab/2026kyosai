@@ -3,32 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>杖の説明</title>
+    <title>杖の鑑定書</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
-        .content-box { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1 { font-size: 1.5rem; color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
-        p { white-space: pre-wrap; } /* 改行をそのまま表示する設定 */
+        /* 魔法風の全体設定 */
+        body { 
+            background-color: #1a1a1a; /* 暗い背景 */
+            background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #d4af37; /* アンティークゴールド */
+            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "serif";
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        /* 羊皮紙のようなボックス */
+        .content-box { 
+            background: #f4e4bc; /* 羊皮紙の色 */
+            color: #2c1e14; /* 文字は濃い茶色 */
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 50px rgba(139,69,19,0.2);
+            max-width: 600px;
+            position: relative;
+            border: 2px solid #8b4513;
+        }
+
+        /* 装飾的な角 */
+        .content-box::before {
+            content: "✧";
+            position: absolute;
+            top: 10px; left: 10px;
+            font-size: 20px; color: #8b4513;
+        }
+
+        h1 { 
+            font-size: 1.8rem; 
+            text-align: center;
+            border-bottom: 2px double #8b4513;
+            padding-bottom: 15px;
+            margin-top: 0;
+            letter-spacing: 0.2rem;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #5d3a1a;
+            border-left: 4px solid #8b4513;
+            padding-left: 10px;
+            margin-top: 25px;
+            display: block;
+        }
+
+        p { 
+            white-space: pre-wrap; 
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* 警告文のスタイル */
+        .warning {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px dashed #a00;
+            background: rgba(255, 0, 0, 0.05);
+            font-size: 0.9rem;
+            color: #a00;
+            text-align: center;
+        }
+
+        /* 魔法の輝きアニメーション */
+        .magic-glow {
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
     </style>
 </head>
 <body>
     <div class="content-box">
-        <h1>この杖について</h1>
-        <p>           
-【鑑定書】秋田杉と辰子の杖
-​素材：秋田杉
+        <h1 class="magic-glow">杖鑑定書</h1>
+        
+        <p>
+<span class="section-title">【素材：秋田杉】</span>
 「洞察力」と「知覚」の象徴。この杖に選ばれる者に愚かな者はおらず、偽善を見抜く力を持つ。真っ直ぐな木目は迷いのない魔法を放ち、特に強力な防御魔法で持ち主を護る。
-​芯：辰子の髪の毛
+
+<span class="section-title">【芯：辰子の髪の毛】</span>
 田沢湖の主である龍・辰子姫の髪。水と深い親和性を持ち、変身術において凄まじい威力を発揮する。一方で「永遠の美」への執念を宿すため、使い手を選ぶ基準は極めて厳しく、自尊心の高い魔法使いを好む。
-​特性と外観
+
+<span class="section-title">【特性と外観】</span>
 私が田沢湖畔で食べた味噌たんぽの木で作られているため、味噌が焼かれた香ばしさと杉の清涼な香りが同居する。           
 
-ぜひ杖を手に取ってみてください！
-呪文は隣のQRコードを読み込むと出ます!
-
-※危険ですので人に向けて呪文を唱えないで！
-※呪文を唱えなくても人に向けないで！
+ぜひ杖を手に取ってみてください。
+呪文は隣のQRコードを読み解くのです…。
         </p>
+
+        <div class="warning">
+            ⚠️ 警告：危険ですので人に向けて呪文を唱えないでください。<br>
+            たとえ無言であっても、杖先を人に向けてはなりません。
+        </div>
     </div>
 </body>
 </html>
