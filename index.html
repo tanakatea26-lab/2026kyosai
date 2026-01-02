@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>杖の鑑定書</title>
     <style>
+        /* 既存のスタイルを維持しつつ、追加・修正 */
         body { 
             background-color: #1a1a1a;
             background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
             background-size: 20px 20px;
             color: #d4af37;
-            font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "serif";
+            font-family: "Sawarabi Mincho", "serif";
             display: flex;
             justify-content: center;
             padding: 40px 20px;
             margin: 0;
-            /* タップ時の青い枠を消す（iPhone用） */
             -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
         }
 
         .content-box { 
@@ -28,22 +29,20 @@
             max-width: 600px;
             position: relative;
             border: 2px solid #8b4513;
+            z-index: 1;
         }
 
-        .content-box::before {
-            content: "✧";
-            position: absolute;
-            top: 10px; left: 10px;
-            font-size: 20px; color: #8b4513;
-        }
-
-        h1 { 
-            font-size: 1.8rem; 
+        /* 儀式のメッセージ */
+        .ritual-text {
             text-align: center;
-            border-bottom: 2px double #8b4513;
-            padding-bottom: 15px;
-            margin-top: 0;
-            letter-spacing: 0.2rem;
+            font-size: 0.95rem;
+            color: #5d3a1a;
+            background: rgba(139, 69, 19, 0.05);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            line-height: 1.6;
         }
 
         .section-title {
@@ -55,59 +54,25 @@
             display: block;
         }
 
-        .ollivander-quote {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(139, 69, 19, 0.1);
-            border-radius: 8px;
-            font-style: italic;
-            border-left: 3px solid #8b4513;
-        }
-
-        p { 
-            white-space: pre-wrap; 
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .call-to-action {
-            display: block;
-            text-align: center;
-            margin: 30px 0;
-            font-size: 1.6rem; 
-            font-weight: bold;
-            color: #8b4513;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            line-height: 1.4;
-            border-top: 1px solid rgba(139, 69, 19, 0.3);
-            border-bottom: 1px solid rgba(139, 69, 19, 0.3);
-            padding: 20px 0;
-        }
-
-        .warning {
-            margin-top: 30px;
-            padding: 15px;
-            border: 1px dashed #a00;
-            background: rgba(255, 0, 0, 0.05);
-            font-size: 0.9rem;
-            color: #a00;
-            text-align: center;
-        }
-
-        .magic-glow {
-            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-        }
-
-        /* プレイヤーは隠す */
-        audio {
-            display: none;
-        }
+        /* 既存のスタイル...（省略：h1, ollivander-quote, call-to-action 等） */
+        h1 { font-size: 1.8rem; text-align: center; border-bottom: 2px double #8b4513; padding-bottom: 15px; margin-top: 0; letter-spacing: 0.2rem; }
+        .ollivander-quote { margin: 20px 0; padding: 15px; background: rgba(139, 69, 19, 0.1); border-radius: 8px; font-style: italic; border-left: 3px solid #8b4513; }
+        p { white-space: pre-wrap; line-height: 1.8; font-size: 1.05rem; }
+        .call-to-action { display: block; text-align: center; margin: 30px 0; font-size: 1.6rem; font-weight: bold; color: #8b4513; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); line-height: 1.4; border-top: 1px solid rgba(139, 69, 19, 0.3); border-bottom: 1px solid rgba(139, 69, 19, 0.3); padding: 20px 0; }
+        .warning { margin-top: 30px; padding: 15px; border: 1px dashed #a00; background: rgba(255, 0, 0, 0.05); font-size: 0.9rem; color: #a00; text-align: center; }
+        .magic-glow { text-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
+        audio { display: none; }
     </style>
 </head>
 <body>
     <div class="content-box">
         <h1 class="magic-glow">杖鑑定書</h1>
         
+        <div class="ritual-text">
+            数回画面をタッチしてみて。<br>
+            貴方に眠る魔法の力を検知したら、音楽が鳴り響くはず。
+        </div>
+
         <p>
 <span class="section-title">【素材：秋田杉】</span>
 「洞察力」と「知覚」の象徴。この杖に選ばれる者に愚かな者はおらず、偽善を見抜く力を持つ。真っ直ぐな木目は迷いのない魔法を放ち、特に強力な防御魔法で持ち主を護る。
@@ -129,7 +94,7 @@
 </span>
         </p>
 
-        <audio id="bgm" loop playsinline preaload="auto">
+        <audio id="bgm" loop playsinline preload="auto">
             <source src="https://raw.githubusercontent.com/tanakatea26-lab/2026kyosai/main/%E3%83%8F%E3%83%AA%E3%83%BC%E3%83%BB%E3%83%9D%E3%83%83%E3%82%BF%E3%83%BC%EF%BC%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%82%84%E3%81%A4.mp3" type="audio/mpeg">
         </audio>
 
@@ -141,20 +106,25 @@
 
     <script>
         const audio = document.getElementById('bgm');
+        let touchCount = 0;
 
-        // iPhone/Safari対策: 最初のタップで音声を「解禁」する
         const playBGM = function() {
-            audio.play().then(() => {
-                console.log("Playback started successfully");
-            }).catch(error => {
-                console.log("Playback failed:", error);
-            });
-            // 一度再生されたらイベントを削除
-            window.removeEventListener('touchstart', playBGM);
-            window.removeEventListener('click', playBGM);
+            touchCount++;
+            
+            // 2〜3回タッチされたら再生（魔法を検知した演出）
+            if (touchCount >= 2) {
+                audio.play().then(() => {
+                    console.log("Magic detected. Music starts.");
+                }).catch(error => {
+                    console.log("Magic failed to manifest:", error);
+                });
+                
+                // 再生されたらイベントを削除
+                window.removeEventListener('touchstart', playBGM);
+                window.removeEventListener('click', playBGM);
+            }
         };
 
-        // タッチとクリックの両方に対応
         window.addEventListener('touchstart', playBGM);
         window.addEventListener('click', playBGM);
     </script>
