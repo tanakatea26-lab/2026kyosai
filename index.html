@@ -1,62 +1,132 @@
-        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px double rgba(139, 69, 19, 0.3);">
-            <div id="spell-seal">
-                <p style="font-size: 0.9rem; color: #5d3a1a; margin-bottom: 10px;">
-                    手元にQRコードがない魔法使いは<br>下の封印を解くのです
-                </p>
-                <button id="unlockBtn" style="
-                    background: #8b4513;
-                    color: #f4e4bc;
-                    border: 1px solid #d4af37;
-                    padding: 12px 25px;
-                    font-family: 'Sawarabi Mincho', serif;
-                    font-size: 1rem;
-                    cursor: pointer;
-                    border-radius: 50px;
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                    transition: all 0.3s;
-                ">呪文の封印を解く</button>
-            </div>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杖の鑑定書</title>
+    <style>
+        /* 既存のスタイルを維持しつつ、追加・修正 */
+        body { 
+            background-color: #1a1a1a;
+            background-image: radial-gradient(#2c2c2c 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #d4af37;
+            font-family: "Sawarabi Mincho", "serif";
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
 
-            <div id="spell-reveal" style="display: none; animation: magicFadeIn 2.5s ease-out forwards;">
-                <div style="font-size: 1.6rem; font-weight: bold; color: #a00; text-shadow: 0 0 15px rgba(255,0,0,0.4); margin-bottom: 15px;">
-                    ―― アグアメンティ！ ――
-                </div>
-                <p style="font-size: 0.9rem; color: #5d3a1a; margin-bottom: 20px;">
-                    封印が解かれました。呪文の先へ進みなさい。
-                </p>
-                <a href="https://tanakatea26-lab.github.io/2026kyosai_2/" style="
-                    display: inline-block;
-                    color: #8b4513;
-                    text-decoration: none;
-                    font-weight: bold;
-                    border-bottom: 2px solid #8b4513;
-                    padding-bottom: 2px;
-                ">▶ 次の試練へ進む</a>
-            </div>
+        .content-box { 
+            background: #f4e4bc;
+            color: #2c1e14;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 50px rgba(139,69,19,0.2);
+            max-width: 600px;
+            position: relative;
+            border: 2px solid #8b4513;
+            z-index: 1;
+        }
+
+        /* 儀式のメッセージ */
+        .ritual-text {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #5d3a1a;
+            background: rgba(139, 69, 19, 0.05);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #5d3a1a;
+            border-left: 4px solid #8b4513;
+            padding-left: 10px;
+            margin-top: 25px;
+            display: block;
+        }
+
+        /* 既存のスタイル...（省略：h1, ollivander-quote, call-to-action 等） */
+        h1 { font-size: 1.8rem; text-align: center; border-bottom: 2px double #8b4513; padding-bottom: 15px; margin-top: 0; letter-spacing: 0.2rem; }
+        .ollivander-quote { margin: 20px 0; padding: 15px; background: rgba(139, 69, 19, 0.1); border-radius: 8px; font-style: italic; border-left: 3px solid #8b4513; }
+        p { white-space: pre-wrap; line-height: 1.8; font-size: 1.05rem; }
+        .call-to-action { display: block; text-align: center; margin: 30px 0; font-size: 1.6rem; font-weight: bold; color: #8b4513; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); line-height: 1.4; border-top: 1px solid rgba(139, 69, 19, 0.3); border-bottom: 1px solid rgba(139, 69, 19, 0.3); padding: 20px 0; }
+        .warning { margin-top: 30px; padding: 15px; border: 1px dashed #a00; background: rgba(255, 0, 0, 0.05); font-size: 0.9rem; color: #a00; text-align: center; }
+        .magic-glow { text-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
+        audio { display: none; }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <h1 class="magic-glow">杖鑑定書</h1>
+        
+        <div class="ritual-text">
+            数回画面をタッチしてみて。<br>
+            貴方に眠る魔法の力を検知したら、音楽が鳴り響くはず。
         </div>
 
-        <style>
-            @keyframes magicFadeIn {
-                0% { opacity: 0; filter: blur(20px) brightness(2); transform: scale(0.8); }
-                50% { opacity: 0.8; filter: blur(5px) brightness(1.5); }
-                100% { opacity: 1; filter: blur(0) brightness(1); transform: scale(1); }
-            }
-        </style>
+        <p>
+<span class="section-title">【素材：秋田杉】</span>
+「洞察力」と「知覚」の象徴。この杖に選ばれる者に愚かな者はおらず、偽善を見抜く力を持つ。真っ直ぐな木目は迷いのない魔法を放ち、特に強力な防御魔法で持ち主を護る。
 
-        <script>
-            // スクリプトの一番最後に追加
-            const unlockBtn = document.getElementById('unlockBtn');
-            const spellSeal = document.getElementById('spell-seal');
-            const spellReveal = document.getElementById('spell-reveal');
+<span class="section-title">【芯：辰子の髪の毛】</span>
+田沢湖の主である龍・辰子姫の髪。水と深い親和性を持ち、変身術において凄まじい威力を発揮する。一方で「永遠の美」への執念を宿すため、使い手を選ぶ基準は極めて厳しく、自尊心の高い魔法使いを好む。
 
-            unlockBtn.addEventListener('click', function() {
-                // 封印を隠して呪文を表示
-                spellSeal.style.display = 'none';
-                spellReveal.style.display = 'block';
+<span class="section-title">【特性と外観】</span>
+私が田沢湖畔で食べた味噌たんぽの木で作られているため、味噌が焼かれた香ばしさと杉の清涼な香りが同居する。           
+
+<div class="ollivander-quote">
+<strong>オリバンダーのコメント：</strong>
+「……ほう。これはまた、極めて珍しい。日本の北国、深い森の巨木と、永遠の美を求めた龍の化身の毛ですか。この杖に選ばれる者は、揺るぎない信念と、誰にも譲れない美学を持っているはずだ。……大切になさい、これは非常に執念深い杖だぞ。」
+</div>
+
+<span class="call-to-action magic-glow">
+ぜひ杖を手に取ってみてください。<br>
+呪文は隣のQRコードを読み解くのです…。
+</span>
+        </p>
+
+        <audio id="bgm" loop playsinline preload="auto">
+            <source src="https://raw.githubusercontent.com/tanakatea26-lab/2026kyosai/main/%E3%83%8F%E3%83%AA%E3%83%BC%E3%83%BB%E3%83%9D%E3%83%83%E3%82%BF%E3%83%BC%EF%BC%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%82%84%E3%81%A4.mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="warning">
+            ⚠️ 警告：危険ですので人に向けて呪文を唱えないでください。<br>
+            たとえ無言であっても、杖先を人に向けてはなりません。
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgm');
+        let touchCount = 0;
+
+        const playBGM = function() {
+            touchCount++;
+            
+            // 2〜3回タッチされたら再生（魔法を検知した演出）
+            if (touchCount >= 2) {
+                audio.play().then(() => {
+                    console.log("Magic detected. Music starts.");
+                }).catch(error => {
+                    console.log("Magic failed to manifest:", error);
+                });
                 
-                // もし音楽がまだ鳴っていなければ、ここで強制的に鳴らすことも可能です
-                if (audio.paused) {
-                    audio.play();
-                }
-            });
-        </script>
+                // 再生されたらイベントを削除
+                window.removeEventListener('touchstart', playBGM);
+                window.removeEventListener('click', playBGM);
+            }
+        };
+
+        window.addEventListener('touchstart', playBGM);
+        window.addEventListener('click', playBGM);
+    </script>
+</body>
+</html>
