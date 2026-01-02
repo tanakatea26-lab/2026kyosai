@@ -68,15 +68,24 @@
         .call-to-action { 
             display: block; 
             text-align: center; 
-            margin: 30px 0; 
+            margin: 30px 0 10px 0; 
             font-size: 1.5rem; 
             font-weight: bold; 
             color: #8b4513; 
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
             line-height: 1.4; 
             border-top: 1px solid rgba(139, 69, 19, 0.3); 
-            border-bottom: 1px solid rgba(139, 69, 19, 0.3); 
-            padding: 20px 0; 
+            padding-top: 20px; 
+        }
+
+        .spell-guide {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #5d3a1a;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.3);
+            padding-bottom: 20px;
         }
 
         .affiliation-check {
@@ -142,11 +151,6 @@
     <div class="content-box">
         <h1 class="magic-glow">杖鑑定書</h1>
         
-        <div class="ritual-text">
-            数回画面をタッチしてみて。<br>
-            貴方に眠る魔法の力を検知したら、音楽が鳴り響くはず。
-        </div>
-
         <div>
             <span class="section-title">【素材：秋田杉】</span>
             <p>「洞察力」と「知覚」の象徴。この杖に選ばれる者に愚かな者はおらず、偽善を見抜く力を持つ。真っ直ぐな木目は迷いのない魔法を放ち、特に強力な防御魔法で持ち主を護る。</p>
@@ -165,9 +169,13 @@
             <span class="call-to-action magic-glow">
                 さあ、杖を手に。魔法を掛けるのだ
             </span>
-       <p style="text-align: center; font-size: 0.9rem; margin-top: -20px; color: #5d3a1a; opacity: 0.8; font-weight: bold;">
-    ※本当に手に取っていただいて構いません。
-       </p>
+            <p style="text-align: center; font-size: 0.9rem; margin-top: -5px; color: #5d3a1a; opacity: 0.8; font-weight: bold;">
+                ※本当に手に取っていただいて構いません。
+            </p>
+            
+            <div class="spell-guide">
+                呪文はこちら
+            </div>
         
         </div>
 
@@ -200,7 +208,6 @@
             if (isPlaying) return;
             touchCount++;
             
-            // 1回目で読み込み、2回目以降で確実に再生
             if (touchCount >= 1) {
                 audio.load();
             }
@@ -209,7 +216,6 @@
                 audio.play().then(() => {
                     isPlaying = true;
                     console.log("Magic success!");
-                    // 成功したらイベント削除
                     document.removeEventListener('click', magicManifest);
                     document.removeEventListener('touchstart', magicManifest);
                 }).catch(e => {
@@ -218,7 +224,6 @@
             }
         };
 
-        // 画面全体へのクリック/タッチに反応
         document.addEventListener('click', magicManifest);
         document.addEventListener('touchstart', magicManifest);
     </script>
