@@ -79,7 +79,6 @@
             padding: 20px 0; 
         }
 
-        /* 所属確認セクション */
         .affiliation-check {
             margin-top: 40px;
             padding: 25px 20px;
@@ -117,11 +116,6 @@
             color: #f4e4bc;
             border: none;
             box-shadow: 0 4px 0 #5d3a1a;
-        }
-
-        .btn-yes:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #5d3a1a;
         }
 
         .btn-no {
@@ -175,7 +169,7 @@
 
         <div class="affiliation-check">
             <div class="check-question">
-                貴方は分福変幻魔法学校の生徒·職員もしくは<br><strong>分福変幻魔導役所</strong>の職員ですか？
+                貴方は群馬魔法学校の生徒もしくは、<br><strong>上州魔術統括局</strong>の職員ですか？
             </div>
             <div class="btn-group">
                 <button class="btn btn-yes" onclick="location.href='https://tanakatea26-lab.github.io/2026kyosai_2/'">はい</button>
@@ -196,25 +190,33 @@
     <script>
         const audio = document.getElementById('bgm');
         let touchCount = 0;
+        let isPlaying = false;
 
-        const playBGM = function() {
+        const magicManifest = function() {
+            if (isPlaying) return;
             touchCount++;
             
-            // 2回以上のタッチで魔法（音）が発動
+            // 1回目で読み込み、2回目以降で確実に再生
+            if (touchCount >= 1) {
+                audio.load();
+            }
+
             if (touchCount >= 2) {
                 audio.play().then(() => {
-                    console.log("Magic detected. Music starts.");
-                }).catch(error => {
-                    console.log("Magic failed to manifest:", error);
+                    isPlaying = true;
+                    console.log("Magic success!");
+                    // 成功したらイベント削除
+                    document.removeEventListener('click', magicManifest);
+                    document.removeEventListener('touchstart', magicManifest);
+                }).catch(e => {
+                    console.log("Magic failed:", e);
                 });
-                
-                window.removeEventListener('touchstart', playBGM);
-                window.removeEventListener('click', playBGM);
             }
         };
 
-        window.addEventListener('touchstart', playBGM);
-        window.addEventListener('click', playBGM);
+        // 画面全体へのクリック/タッチに反応
+        document.addEventListener('click', magicManifest);
+        document.addEventListener('touchstart', magicManifest);
     </script>
 </body>
 </html>
