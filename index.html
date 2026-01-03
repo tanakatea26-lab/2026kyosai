@@ -31,18 +31,6 @@
             z-index: 1;
         }
 
-        .ritual-text {
-            text-align: center;
-            font-size: 0.95rem;
-            color: #5d3a1a;
-            background: rgba(139, 69, 19, 0.05);
-            border: 1px solid rgba(139, 69, 19, 0.2);
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-            line-height: 1.6;
-        }
-
         .section-title {
             font-weight: bold;
             color: #5d3a1a;
@@ -143,6 +131,45 @@
             text-align: center; 
         }
 
+        /* カスタムアラートのスタイル */
+        #customAlert {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .alert-box {
+            background: #f4e4bc;
+            border: 3px solid #8b4513;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 85%;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .alert-title {
+            color: #a00;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .alert-msg {
+            color: #2c1e14;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
         .magic-glow { text-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
         audio { display: none; }
     </style>
@@ -185,7 +212,7 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-yes" onclick="location.href='https://tanakatea26-lab.github.io/2026kyosai_2/'">はい</button>
-                <button class="btn btn-no" onclick="alert('部外者のアクセスは禁じられています。')">いいえ</button>
+                <button class="btn btn-no" onclick="showAlert()">いいえ</button>
             </div>
         </div>
 
@@ -199,7 +226,25 @@
         </div>
     </div>
 
+    <div id="customAlert">
+        <div class="alert-box">
+            <span class="alert-title">【アクセス拒否】</span>
+            <p class="alert-msg">部外者のアクセスは禁じられています。</p>
+            <button class="btn btn-yes" onclick="closeAlert()">戻る</button>
+        </div>
+    </div>
+
     <script>
+        // アラートを表示する関数
+        function showAlert() {
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        // アラートを閉じる関数
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
         const audio = document.getElementById('bgm');
         let touchCount = 0;
         let isPlaying = false;
